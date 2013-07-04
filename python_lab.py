@@ -2,34 +2,34 @@
 minutes_in_week = 60*24*7
 
 ## Task 2
-remainder_without_mod = ...
+remainder_without_mod = 2304811 - int(2304811 / 47) * 47
 
 ## Task 3
-divisible_by_3 = ...
+divisible_by_3 = (673 + 909) % 3 == 0
 
 ## Task 4
 x = -9
 y = 1/2
-statement_val = ...
+statement_val = 1.0
 
 ## Task 5
-first_five_squares = { ... for _ in {1,2,3,4,5} }
+first_five_squares = { x**2 for x in {1,2,3,4,5} }
 
 ## Task 6
-first_five_pows_two = { ... for _ in {0,1,2,3,4} }
+first_five_pows_two = { 2**x for x in {0,1,2,3,4} }
 
 ## Task 7: enter in the two new sets
-X1 = { ..., ..., ... }
-Y1 = { ..., ..., ... }
+X1 = {1,2,3}
+Y1 = {5,6,7}
 
 ## Task 8: enter in the two new sets
-X2 = { ..., ..., ... }
-Y2 = { ..., ..., ... }
+X2 = {0,3,2}
+Y2 = {9,4,6}
 
 ## Task 9
 base = 10
 digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-three_digits_set = { ... }
+three_digits_set = {x for x in range(base**3)}
 
 ## Task 10
 S = {1, 2, 3, 4}
