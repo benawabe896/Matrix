@@ -61,14 +61,14 @@ L1 = [1,2,2] # <-- want len(L1) != len(list(set(L1)))
 L2 = [3,2,1] # <-- same len(L2) == len(list(set(L2))) but L2 != list(set(L2))
 
 ## Task 18
-odd_num_list_range = {...}
+odd_num_list_range = {x for x in range(1,100,2)}
 
 ## Task 19
 L = ['A','B','C','D','E']
-range_and_zip = ...
+range_and_zip = list(zip(range(5),L))
 
 ## Task 20
-list_sum_zip = [...]
+list_sum_zip = [ sum(x) for x in zip([10,25,40],[1,15,20]) ]
 
 ## Task 21
 dlist = [{'James':'Sean', 'director':'Terence'}, {'James':'Roger', 'director':'Lewis'}, {'James':'Pierce', 'director':'Roger'}]
