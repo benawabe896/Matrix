@@ -44,21 +44,21 @@ LofL = [[.25, .75, .1], [-1, 0], [4, 4, 4, 4]]
 LofL_sum = sum([sum(x) for x in LofL])
 
 ## Task 13
-cartesian_product = ... # use form: [ ... {'A','B','C'} ... {1,2,3} ... ]
+cartesian_product = [ sum([[x],[y]], []) for x in {'A','B','C'}  for y in {1,2,3} ]
 
 ## Task 14
 S = {-4, -2, 1, 2, 5, 0}
-zero_sum_list = [ ... ] 
+zero_sum_list = [ (x,y,z) for x in S for y in S for z in S if sum([x,y,z]) == 0 ]
 
 ## Task 15
-exclude_zero_list = [ ... ]
+exclude_zero_list = [ (x,y,z) for x in S for y in S for z in S if sum([x,y,z]) == 0 and (x,y,z) != (0,0,0)]
 
 ## Task 16
-first_of_tuples_list = ...
+first_of_tuples_list = [ (x,y,z) for x in S for y in S for z in S if sum([x,y,z]) == 0 and (x,y,z) != (0,0,0)][0]
 
 ## Task 17
-L1 = [...] # <-- want len(L1) != len(list(set(L1)))
-L2 = [...] # <-- same len(L2) == len(list(set(L2))) but L2 != list(set(L2))
+L1 = [1,2,2] # <-- want len(L1) != len(list(set(L1)))
+L2 = [3,2,1] # <-- same len(L2) == len(list(set(L2))) but L2 != list(set(L2))
 
 ## Task 18
 odd_num_list_range = {...}
