@@ -5,17 +5,17 @@
 
 
 ## Problem 1
-def myFilter(L, num): pass
+def myFilter(L, num): return [x for x in L if x % num != 0]
 
 
 
 ## Problem 2
-def myLists(L): pass
+def myLists(L): return [ [y for y in range(1,x+1)] for x in L ]
 
 
 
 ## Problem 3
-def myFunctionComposition(f, g): pass
+def myFunctionComposition(f, g): return { x[0]:g[x[1]] for x in f.items()}
 
 
 ## Problem 4
