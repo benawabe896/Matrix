@@ -73,41 +73,41 @@ list_sum_zip = [ sum(x) for x in zip([10,25,40],[1,15,20]) ]
 ## Task 21
 dlist = [{'James':'Sean', 'director':'Terence'}, {'James':'Roger', 'director':'Lewis'}, {'James':'Pierce', 'director':'Roger'}]
 k = 'James'
-value_list = [...]
+value_list = [x[k] for x in dlist]
 
 ## Task 22
 dlist = [{'Bilbo':'Ian','Frodo':'Elijah'},{'Bilbo':'Martin','Thorin':'Richard'}]
 k = 'Bilbo'
-value_list_modified_1 = [...] # <-- Use the same expression here
+value_list_modified_1 = [ x[k] if k in x else 'NOT PRESENT'  for x in dlist]
 k = 'Frodo'
-value_list_modified_2 = [...] # <-- as you do here
+value_list_modified_2 = [ x[k] if k in x else 'NOT PRESENT'  for x in dlist]
 
 ## Task 23
-square_dict = {...}
+square_dict = { x:x**2 for x in range(100) }
 
 ## Task 24
 D = {'red','white','blue'}
-identity_dict = {...}
+identity_dict = {x:x for x in D}
 
 ## Task 25
 base = 10
 digits = set(range(10))
-representation_dict = {...}
+representation_dict = {x:[int(str(x).zfill(3)[0]), int(str(x).zfill(3)[1]), int(str(x).zfill(3)[2])] for x in range(base**3)}
 
 ## Task 26
 d = {0:1000.0, 1:1200.50, 2:990}
 names = ['Larry', 'Curly', 'Moe']
-listdict2dict = { ... }
+listdict2dict = { names[x]:y for (x,y) in d.items() }
 
 ## Task 27
-def nextInts(L): return [ ... ]
+def nextInts(L): return [ x+1 for x in L ]
 
 ## Task 28
-def cubes(L): return [ ... ] 
+def cubes(L): return [ x**3 for x in L ] 
 
 ## Task 29
-def dict2list(dct, keylist): return [ ... ]
+def dict2list(dct, keylist): return [ dct[x] for x in keylist ]
 
 ## Task 30 
-def list2dict(L, keylist): return { ... } 
+def list2dict(L, keylist): return { keylist[x]:L[x] for x in range(len(L)) } 
 
