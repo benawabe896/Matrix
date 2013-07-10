@@ -50,16 +50,16 @@ v_0100010 = set()
 
 
 ## Problem 6
-uv_a = ...
-uv_b = ...
-uv_c = ...
-uv_d = ...
+uv_a = 5
+uv_b = 6
+uv_c = 16
+uv_d = -1
 
 
 
 ## Problem 7
 # use 'one' instead of '1'
-x_gf2 = [...]
+x_gf2 = [one,0,0,0]
 
 
 
