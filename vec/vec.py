@@ -2,39 +2,45 @@ def getitem(v,d):
     "Returns the value of entry d in v"
     assert d in v.D
 
-    return v.D[d] if d in v.D else 0
+    return v.f[d] if d in v.f else 0
 
 def setitem(v,d,val):
     "Set the element of v with label d to be val"
     assert d in v.D
-    v.D[d] = val 
+    v.f[d] = val 
 
 def equal(u,v):
     "Returns true iff u is equal to v"
     assert u.D == v.D
 
-    return True if len([x for x in range(len(u)) if u[x] == v[x]]) != 0 else False
+    for x in u.f:
+	    if getitem(v,x) != getitem(u,x):
+		    return False
+    for x in v.f:
+	    if getitem(v,x) != getitem(u,x):
+		    return False
+    return True
 
 def add(u,v):
     "Returns the sum of the two vectors"
     assert u.D == v.D
 
-    return [u[i]+v[i] for i in range(len(u))]
+    return Vec(u.D & v.D, {x: u.f[x] + v.f[x] if x in u.f and x in v.f else v.f[x] if x in v.f else u.f[x] for x in u.D & v.D if x in u.f or x in v.f})
 
 def dot(u,v):
     "Returns the dot product of the two vectors"
     assert u.D == v.D
 
-    return sum([u[x]*v[x] for x in range(len(v))])
+    return sum( u.f[x] * v.f[x] if x in u.f and x in v.f else 0 for x in u.D & v.D )
 
 def scalar_mul(v, alpha):
     "Returns the scalar-vector product alpha times v"
 
-    return [alpha*x for x in v]
+    return Vec(v.D, {x: alpha * v.f[x] for x in v.D if x in v.f})
 
 def neg(v):
     "Returns the negation of a vector"
-    return [-1*x for x in v]
+    return Vec(v.D, {x: -1 * v.f[x] for x in v.D if x in v.f})
 
 ##### NO NEED TO MODIFY BELOW HERE #####
 class Vec:
