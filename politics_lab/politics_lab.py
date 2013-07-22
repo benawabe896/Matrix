@@ -118,7 +118,15 @@ def find_average_record(sen_set, voting_dict):
         >>> find_average_record({'Fox-Epstein','Ravella'}, voting_dict)
         [-0.5, -0.5, 0.0]
     """
-    return ...
+    vec = [0]*(len(sen_set)+1)
+    for sen in sen_set:
+	    vals = voting_dict[sen]
+	    for idx in range(len(vals)):
+		    vec[idx] += vals[idx]
+
+    for x in range(len(vec)):
+	    vec[x] /= len(sen_set)
+    return vec
 
 average_Democrat_record = ... # (give the vector)
 
@@ -127,6 +135,10 @@ average_Democrat_record = ... # (give the vector)
 #print(policy_compare('Akaka', 'Pryor', vd))
 #print(most_similar('Chafee', create_voting_dict()))
 #print(least_similar('Santorum', create_voting_dict()))
+#voting_dict = {'Klein': [-1,0,1], 'Fox-Epstein': [-1,-1,-1], 'Ravella': [0,0,1]}
+#print(find_average_record({'Fox-Epstein', 'Ravella'}, voting_dict))
+d = create_voting_dict()
+print(find_average_record({'Clinton', 'Reed', 'Reid'}, d))
 
 
 # Task 8
