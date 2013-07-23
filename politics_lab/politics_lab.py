@@ -1,4 +1,4 @@
-import operator
+import operator, sys
 
 voting_data = list(open("voting_record_dump109.txt"))
 
@@ -118,7 +118,11 @@ def find_average_record(sen_set, voting_dict):
         >>> find_average_record({'Fox-Epstein','Ravella'}, voting_dict)
         [-0.5, -0.5, 0.0]
     """
-    vec = [0]*(len(sen_set)+1)
+    sen_len = 0
+    for x in sen_set:
+	    sen_len = len(voting_dict[x])
+	    break
+    vec = [0]*sen_len
     for sen in sen_set:
 	    vals = voting_dict[sen]
 	    for idx in range(len(vals)):
@@ -128,18 +132,7 @@ def find_average_record(sen_set, voting_dict):
 	    vec[x] /= len(sen_set)
     return vec
 
-average_Democrat_record = ... # (give the vector)
-
-#print(most_similar('Klein', vd))
-#print(policy_compare('Akaka', 'Alexander', vd))
-#print(policy_compare('Akaka', 'Pryor', vd))
-#print(most_similar('Chafee', create_voting_dict()))
-#print(least_similar('Santorum', create_voting_dict()))
-#voting_dict = {'Klein': [-1,0,1], 'Fox-Epstein': [-1,-1,-1], 'Ravella': [0,0,1]}
-#print(find_average_record({'Fox-Epstein', 'Ravella'}, voting_dict))
-d = create_voting_dict()
-print(find_average_record({'Clinton', 'Reed', 'Reid'}, d))
-
+average_Democrat_record = [-0.16279069767441862, -0.23255813953488372, 1.0, 0.8372093023255814, 0.9767441860465116, -0.13953488372093023, -0.9534883720930233, 0.813953488372093, 0.9767441860465116, 0.9767441860465116, 0.9069767441860465, 0.7674418604651163, 0.6744186046511628, 0.9767441860465116, -0.5116279069767442, 0.9302325581395349, 0.9534883720930233, 0.9767441860465116, -0.3953488372093023, 0.9767441860465116, 1.0, 1.0, 1.0, 0.9534883720930233, -0.4883720930232558, 1.0, -0.32558139534883723, -0.06976744186046512, 0.9767441860465116, 0.8604651162790697, 0.9767441860465116, 0.9767441860465116, 1.0, 1.0, 0.9767441860465116, -0.3488372093023256, 0.9767441860465116, -0.4883720930232558, 0.23255813953488372, 0.8837209302325582, 0.4418604651162791, 0.9069767441860465, -0.9069767441860465, 1.0, 0.9069767441860465, -0.3023255813953488]
 
 # Task 8
 
@@ -154,5 +147,28 @@ def bitter_rivals(voting_dict):
         >>> bitter_rivals(voting_dict)
         ('Fox-Epstein', 'Ravella')
     """
-    return (..., ...)
+    least = ['','','']
+    for sen in voting_dict:
+	    for sen2 in voting_dict:
+		    if sen != sen2:
+			    score = policy_compare(sen, sen2, voting_dict)
+			    if least[2] == '' or score < least[2]:
+				    least = [sen, sen2, score]
+    return (least[0], least[1])
+
+print(bitter_rivals(create_voting_dict()))
+#print(most_similar('Klein', vd))
+#print(policy_compare('Akaka', 'Alexander', vd))
+#print(policy_compare('Akaka', 'Pryor', vd))
+#print(most_similar('Chafee', create_voting_dict()))
+#print(least_similar('Santorum', create_voting_dict()))
+#voting_dict = {'Klein': [-1,0,1], 'Fox-Epstein': [-1,-1,-1], 'Ravella': [0,0,1]}
+#print(find_average_record({'Fox-Epstein', 'Ravella'}, voting_dict))
+#d = create_voting_dict()
+#print(find_average_record({'Clinton', 'Reed', 'Reid'}, d))
+
+#dems = {x.split()[0] for x in voting_data if x.split()[1] == 'D'}
+#d = create_voting_dict()
+#print(find_average_record(dems, d))
+#print(find_average_record({'A','B'}, {'A':[1,1], 'B':[0,0], 'C':[-1,0]}))
 
