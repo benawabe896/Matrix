@@ -28,7 +28,14 @@ def vec_sum(veclist, D):
     >>> vec_sum([v1, v2, v3, v4], D) == Vec(D, {'b': 13, 'a': 11})
     True
     '''
-    pass
+    res = {}
+    for ch in D:
+	    for v in veclist:
+		    if ch in v.f and v.f[ch] > 0:
+			    if ch not in res:
+				    res[ch] = 0
+			    res[ch] += v.f[ch]
+    return Vec(D, res)
 
 def vec_select_sum(veclist, k, D): 
     '''
@@ -40,9 +47,7 @@ def vec_select_sum(veclist, k, D):
     >>> vec_select_sum([v1, v2, v3, v4], 'a', D) == Vec(D, {'b': 3})
     True
     '''
-    pass
-
-
+    return vec_sum(vec_select(veclist, k), D)
 
 ## Problem 2
 def scale_vecs(vecdict):
@@ -52,8 +57,10 @@ def scale_vecs(vecdict):
     >>> scale_vecs({3: v1, 5: v2}) == [Vec({1,2,3},{2: 3.0}), Vec({1,2,4},{1: 0.2, 2: 0.4, 4: 1.6})]
     True
     '''
-    pass
-
+    res = []
+    for x,y in vecdict.items():
+	    res.append(Vec(y.D, { i: y.f[i]*(1/x) for i in y.f }))
+    return res
 
 
 ## Problem 3
