@@ -80,8 +80,7 @@ def GF2_span(D, L):
     >>> Vec(D, {x:one for x in D}) in GF2_span(D, L)
     True
     '''
-    pass
-
+    list(itertools.product([0,1], repeat=3))
 
 
 ## Problem 4
