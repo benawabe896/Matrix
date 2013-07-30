@@ -2,7 +2,8 @@
 # Please fill out this stencil and submit using the provided submission script.
 
 from vec import Vec
-
+from GF2 import one
+import itertools
 
 
 ## Problem 1
@@ -80,23 +81,28 @@ def GF2_span(D, L):
     >>> Vec(D, {x:one for x in D}) in GF2_span(D, L)
     True
     '''
-    list(itertools.product([0,1], repeat=3))
-
+    res = []
+    for x in list(itertools.product([0,1], repeat=len(L))):
+	    tmp = Vec(D,{})
+	    for y in range(len(x)):
+		    tmp = tmp + x[y] * L[y]
+	    res.append(tmp)
+    return res
 
 ## Problem 4
 # Answer with a boolean, please.
 
-is_it_a_vector_space_1 = ...
-is_it_a_vector_space_2 = ...
+is_it_a_vector_space_1 = True
+is_it_a_vector_space_2 = False
 
 
 
 ## Problem 5
-is_it_a_vector_space_3 = ...
-is_it_a_vector_space_4 = ...
+is_it_a_vector_space_3 = True
+is_it_a_vector_space_4 = False
 
 
 ## Problem 6
 
-is_it_a_vector_space_5 = ...
-is_it_a_vector_space_6 = ...
+is_it_a_vector_space_5 = True
+is_it_a_vector_space_6 = False
