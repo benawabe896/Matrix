@@ -41,12 +41,15 @@ def transpose(M):
 def vector_matrix_mul(v, M):
     "Returns the product of vector v and matrix M"
     assert M.D[0] == v.D
-    pass
+
+    Mrow = {row:Vec(M.D[1], {col:M[row,col] for col in M.D[1]}) for row in M.D[0]}
+    return sum([v.f[x] * Mrow[x] if x in v.f else Vec(M.D[1], {}) for x in v.D])
 
 def matrix_vector_mul(M, v):
     "Returns the product of matrix M and vector v"
     assert M.D[1] == v.D
-    pass
+
+    return Vec(M.D[0], {x: sum([ M.f[x,y] * v.f[y] if (x,y) in M.f and y in v.f else 0 for y in M.D[1]]) for x in M.D[0]})
 
 def matrix_matrix_mul(A, B):
     "Returns the product of A and B"
