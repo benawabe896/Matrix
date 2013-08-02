@@ -54,7 +54,28 @@ def matrix_vector_mul(M, v):
 def matrix_matrix_mul(A, B):
     "Returns the product of A and B"
     assert A.D[1] == B.D[0]
-    pass
+
+    """
+    x1,y1 * x1,y1 + x2,y1 * x1,y2 , x1,y1 * x2,y1 + x2,y1 * x2,y2
+    x1,y2 * x1,y1 + x2,y2 * x1,y2 , x1,y2 * x2,y1 + x2,y2 * x2,y2
+    """
+
+    """
+    x1,y1 * x1,y1 + x2,y1 * x1,y2 + x3,y1 * x1,y3 , x1,y1 * x2,y1 + x2,y1 * x2,y2 + x3,y1 * x2,y3
+    x1,y2 * x1,y1 + x2,y2 * x1,y2 + x3,y2 * x1,y3 , x1,y2 * x2,y1 + x2,y2 * x2,y2 + x3,y2 * x2,y3
+    """
+
+    res = {}
+    for x in A.D[0]:
+	    inner = []
+	    for y in A.D[1]:
+	    	print('x',x,'aval', getitem(A, (x,y)),'y',y, 'bval', getitem(B, (y,x)))
+	    	inner.append(A.f[x,y] * B.f[y,x] if (x,y) in A.f and (y,x) in B.f else 0)
+	    print('inner', inner)
+	    res[x,y] = sum(inner)
+    print('res', res)
+    return Mat(A.D,res)
+
 
 ################################################################################
 
