@@ -66,15 +66,15 @@ def matrix_matrix_mul(A, B):
     """
 
     res = {}
-    for x in A.D[0]:
-	    inner = []
-	    for y in A.D[1]:
-	    	print('x',x,'aval', getitem(A, (x,y)),'y',y, 'bval', getitem(B, (y,x)))
-	    	inner.append(A.f[x,y] * B.f[y,x] if (x,y) in A.f and (y,x) in B.f else 0)
-	    print('inner', inner)
-	    res[x,y] = sum(inner)
-    print('res', res)
-    return Mat(A.D,res)
+    for i in A.D[0]:
+	    for j in B.D[1]:
+		    for k in B.D[0]:
+			    if (i,j) not in res:
+				    res[(i,j)] = 0
+			    aval = A.f[i,k] if (i,k) in A.f else 0
+			    bval = B.f[k,j] if (k,j) in B.f else 0
+			    res[(i,j)] += aval * bval
+    return Mat((A.D[0], B.D[1]),res)
 
 
 ################################################################################
