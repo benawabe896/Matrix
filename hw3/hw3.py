@@ -1,3 +1,5 @@
+from matutil import mat2coldict, mat2rowdict
+
 # version code 893
 # Please fill out this stencil and submit using the provided submission script.
 
@@ -82,7 +84,7 @@ small_mat_mult_6 = [[-2,4],[1,1],[1,-3]]
 ## Problem 7
 # Please represent your solution as a list of row lists.
 
-part_1_AB = [[5,2,0,1],[2,1-4,6],[2,3,0,-4],[-2,3,4,0]]
+part_1_AB = [[5,2,0,1],[2,1,-4,6],[2,3,0,-4],[-2,3,4,0]]
 part_1_BA = [[1,-4,6,2],[3,0,-4,2],[3,4,0,-2],[2,0,1,5]]
 
 part_2_AB = [[5,1,0,2],[2,6,-4,1],[2,-4,0,3],[-2,0,4,3]]
@@ -99,78 +101,88 @@ part_3_BA = [[3,4,0,-2],[1,-4,6,2],[2,0,1,5],[3,0,-4,2]]
 # Represent multiplication of the variables, make them one string.
 # For example, the sum of 'a' and 'b' would be 'a+b'.
 
-matrix_matrix_mult_1    = [[2,'b+a'],[0,1]]
-matrix_matrix_mult_2_A2 = ...
-matrix_matrix_mult_2_A3 = ...
+matrix_matrix_mult_1    = [[1,'a+b'],[0,1]]
+matrix_matrix_mult_2_A2 = [[1,2],[0,1]]
+matrix_matrix_mult_2_A3 = [[1,3],[0,1]]
 
 # Use the string 'n' to represent variable the n in A^n.
-matrix_matrix_mult_2_An = ...
+matrix_matrix_mult_2_An = [[1,'n'],[0,1]]
 
 
 
 ## Problem 9
 # Please represent your answer as a list of row lists.
 
-your_answer_a_AB = ...
-your_answer_a_BA = ...
+your_answer_a_AB = [[0,0,2,0],[0,0,5,0],[0,0,4,0],[0,0,6,0]]
+your_answer_a_BA = [[0,0,0,0],[4,4,4,0],[0,0,0,0],[0,0,0,0]]
 
-your_answer_b_AB = ...
-your_answer_b_BA = ...
+your_answer_b_AB = [[0,2,-1,0],[0,5,3,0],[0,4,0,0],[0,6,-5,0]]
+your_answer_b_BA = [[0,0,0,0],[1,5,-2,3],[0,0,0,0],[4,4,4,0]]
 
-your_answer_c_AB = ...
-your_answer_c_BA = ...
+your_answer_c_AB = [[6,0,0,0],[6,0,0,0],[8,0,0,0],[5,0,0,0]]
+your_answer_c_BA = [[4,2,1,-1],[4,2,1,-1],[0,0,0,0],[0,0,0,0]]
 
-your_answer_d_AB = ...
-your_answer_d_BA = ...
+your_answer_d_AB = [[0,3,0,4],[0,4,0,1],[0,4,0,4],[0,-6,0,-1]]
+your_answer_d_BA = [[0,11,0,-2],[0,0,0,0],[0,0,0,0],[1,5,-2,3]]
 
-your_answer_e_AB = ...
-your_answer_e_BA = ...
+your_answer_e_AB = [[0,3,0,8],[0,-9,0,2],[0,0,0,8],[0,15,0,-2]]
+your_answer_e_BA = [[-2,12,4,-10],[0,0,0,0],[0,0,0,0],[-3,-15,6,-9]]
 
-your_answer_f_AB = ...
-your_answer_f_BA = ...
+your_answer_f_AB = [[-4,4,2,-3],[-1,10,-4,9],[-4,8,8,0],[1,12,4,-15]]
+your_answer_f_BA = [[-4,-2,-1,1],[2,10,-4,6],[8,8,8,0],[-3,18,6,-15]]
 
 
 
 ## Problem 10
-column_row_vector_multiplication1 = Vec({0, 1}, {...})
+column_row_vector_multiplication1 = Vec({0, 1}, {0:13, 1:20})
 
-column_row_vector_multiplication2 = Vec({0, 1, 2}, {...})
+column_row_vector_multiplication2 = Vec({0, 1, 2}, {0:24,1:11,2:4})
 
-column_row_vector_multiplication3 = Vec({0, 1, 2, 3}, {...})
+column_row_vector_multiplication3 = Vec({0, 1, 2, 3}, {0:4,1:8,2:11,3:3})
 
-column_row_vector_multiplication4 = Vec({0,1}, {...})
+column_row_vector_multiplication4 = Vec({0,1}, {0:30,1:16})
 
-column_row_vector_multiplication5 = Vec({0, 1, 2}, {...})
+column_row_vector_multiplication5 = Vec({0, 1, 2}, {0:-3,1:1,2:9})
 
 
 
 ## Problem 11
 def lin_comb_mat_vec_mult(M, v):
     assert(M.D[1] == v.D)
-    pass
 
-
+    cols = mat2coldict(M)
+    new_dict = Vec(M.D[0],{k:0 for k in M.D[0]})
+    for k,col_vec in cols.items():
+	    tmp = v[k] * col_vec
+	    new_dict = new_dict + tmp
+    return new_dict
 
 ## Problem 12
 def lin_comb_vec_mat_mult(v, M):
     assert(v.D == M.D[0])
-    pass
+    cols = mat2rowdict(M)
+    new_dict = Vec(M.D[1],{k:0 for k in M.D[1]})
+    for k,col_vec in cols.items():
+	    tmp = v[k] * col_vec
+	    new_dict = new_dict + tmp
+    return new_dict
 
+v1 = Vec({1, 2, 3}, {1: 1, 2: 8})
+M1 = Mat(({1, 2, 3}, {1, 2, 3}), {(1, 2): 2, (2, 1):-1, (3, 1): 1, (3, 3): 7})
 
+res = lin_comb_vec_mat_mult(v1,M1)
 
 ## Problem 13
 def dot_product_mat_vec_mult(M, v):
     assert(M.D[1] == v.D)
-    pass
-
-
+    rows = mat2rowdict(M)
+    return Vec(M.D[0], {u:rows[u]*v for u in M.D[0]})
 
 ## Problem 14
 def dot_product_vec_mat_mult(v, M):
     assert(v.D == M.D[0])
-    pass
-
-
+    cols = mat2coldict(M)
+    return Vec(M.D[1], {u:cols[u]*v for u in M.D[1]})
 
 ## Problem 15
 def Mv_mat_mat_mult(A, B):
