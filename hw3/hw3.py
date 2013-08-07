@@ -1,4 +1,4 @@
-from matutil import mat2coldict, mat2rowdict
+from matutil import mat2coldict, mat2rowdict, coldict2mat, rowdict2mat
 
 # version code 893
 # Please fill out this stencil and submit using the provided submission script.
@@ -187,23 +187,19 @@ def dot_product_vec_mat_mult(v, M):
 ## Problem 15
 def Mv_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
-
+    return coldict2mat({x:A*col for x,col in mat2coldict(B).items()})
 
 ## Problem 16
 def vM_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
-
+    return rowdict2mat({x:mat2rowdict(A)[x]*B for x in A.D[0]})
 
 ## Problem 17
 def dot_prod_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
-    pass
-
-
+    Adict = mat2rowdict(A)
+    Bdict = mat2coldict(B)
+    return rowdict2mat({x: Vec(Bdict.keys(),{y:row*col for y,col in Bdict.items()}) for x,row in Adict.items()})
 
 ## Problem 18
 solving_systems_x1 = ...
