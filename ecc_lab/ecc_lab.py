@@ -1,6 +1,7 @@
 from vec import Vec
 from mat import Mat
 from matutil import *
+from vecutil import *
 from bitutil import noise
 from GF2 import one
 
@@ -13,8 +14,7 @@ G = listlist2mat([[one,0,one,one],[one,one,0,one],[0,0,0,one],[one,one,one,0],[0
 
 ## Task 1 part 2
 # Please write your answer as a list. Use one from GF2 and 0 as the elements.
-encoding_1001 = None
-
+encoding_1001 = [0,0,one,one,0,0,one]
 
 ## Task 2
 # Express your answer as an instance of the Mat class.
