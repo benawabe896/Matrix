@@ -1,0 +1,50 @@
+    -----------------
+  |  one   0 one one
+  |  one one   0 one
+  |    0   0   0 one
+  |  one one one   0
+  |    0   0 one   0
+  |    0 one   0   0
+  |  one   0   0   0
+
+     -----------------
+  |  one   0   0   0
+  |    0 one   0   0
+  |    0   0 one   0
+  |    0   0   0 one
+
+
+
+
+     -------------------------
+  | x x x x x x x 
+  | x x x x x x x 
+  | x x x x x x x 
+  | x x x x x x x 
+
+
+     -----
+  |    0
+  |    0
+  |  one
+  |  one
+  |    0
+  |    0
+  |  one
+
+     -----
+  |  one
+  |    0
+  |    0
+  |  one
+
+
+
+[x x x x x x x] * [0,0,one,one,0,0,one] = one
+[x x x x x x x] * [one,one,0,one,0,0,one] = one
+[x x x x x x x] * [0,one,0,one,0,one,0] = 0
+[x x x x x x x] * [one,0,0,one,one,0,0] = 0
+[x x x x x x x] * [one,one,one,0,0,0,0] = 0
+
+[one,0,one,one] * [x x x x] = 0
+[one,one,0,one] * [x x x x] = 0
