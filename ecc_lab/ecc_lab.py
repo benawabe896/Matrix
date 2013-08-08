@@ -1,3 +1,4 @@
+import itertools
 from vec import Vec
 from mat import Mat
 from matutil import *
@@ -10,7 +11,52 @@ from GF2 import one
 the procedure listlist2mat in the matutil module (be sure to import first).
 Since we are working over GF (2), you should use the value one from the
 GF2 module to represent 1"""
+
 G = listlist2mat([[one,0,one,one],[one,one,0,one],[0,0,0,one],[one,one,one,0],[0,0,one,0],[0,one,0,0],[one,0,0,0]])
+I = listlist2mat([[one,0,0,0],[0,one,0,0],[0,0,one,0],[0,0,0,one]])
+GR = listlist2mat([[0,0,one,0,one,0,one],[0,0,one,0,0,one,one],[0,0,one,0,0,0,0],[0,0,0,0,one,one,one,one],[0,0,0,0,one,0,0],[0,0,0,0,0,one,0],[0,0,0,0,0,0,one]])
+
+Gcols = mat2coldict(G)
+Irows = mat2rowdict(I)
+allcomb   = list(itertools.product([0, one], repeat=7))
+
+#print(G)
+#print(I)
+#print(GR)
+#print(Gcols[0])
+#print(Irows[0])
+#print(list(allcomb[0]))
+"""
+V1 = list2vec(list(allcomb[0]))
+for x in allcomb:
+	v = list2vec(list(x))
+	if v*G == Irows[0]:
+		for x1 in allcomb:
+			v1 = list2vec(list(x1))
+			if v1*G == Irows[1]:
+				for x2 in allcomb:
+					v2 = list2vec(list(x2))
+					if v2*G == Irows[2]:
+						for x3 in allcomb:
+							v3 = list2vec(list(x3))
+							if v3*G == Irows[3]:
+								test = listlist2mat([list(x),list(x1),list(x2),list(x3)])
+								if test*G == I and G*test == GR:
+									print(test)
+									break
+
+"""
+#print(V1*G)
+#print(allcomb[0] * Gcols[0])
+
+"""
+       0 1   2 3   4   5   6
+     -----------------------
+ 0  |  0 0   0 0   0   0 one
+ 1  |  0 0   0 0   0 one   0
+ 2  |  0 0   0 0 one   0   0
+ 3  |  0 0 one 0   0   0   0
+"""
 
 ## Task 1 part 2
 # Please write your answer as a list. Use one from GF2 and 0 as the elements.
@@ -18,7 +64,7 @@ encoding_1001 = [0,0,one,one,0,0,one]
 
 ## Task 2
 # Express your answer as an instance of the Mat class.
-R = None
+R = Mat(({0, 1, 2, 3}, {0, 1, 2, 3, 4, 5, 6}), {(1, 2): 0, (3, 2): one, (0, 0): 0, (3, 0): 0, (0, 4): 0, (1, 4): 0, (2, 6): 0, (0, 5): 0, (2, 1): 0, (2, 5): 0, (2, 0): 0, (1, 0): 0, (3, 5): 0, (0, 1): 0, (0, 2): 0, (3, 3): 0, (0, 6): one, (3, 4): 0, (3, 1): 0, (1, 6): 0, (1, 1): 0, (1, 5): one, (3, 6): 0, (2, 2): 0, (1, 3): 0, (2, 3): 0, (0, 3): 0, (2, 4): one})
 
 ## Task 3
 # Create an instance of Mat representing the check matrix H.
