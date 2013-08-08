@@ -199,25 +199,26 @@ def dot_prod_mat_mat_mult(A, B):
     assert A.D[1] == B.D[0]
     Adict = mat2rowdict(A)
     Bdict = mat2coldict(B)
-    return rowdict2mat({x: Vec(Bdict.keys(),{y:row*col for y,col in Bdict.items()}) for x,row in Adict.items()})
+    #return rowdict2mat({x: Vec(Bdict.keys(),{y:row*col for y,col in Bdict.items()}) for x,row in Adict.items()})
+    return rowdict2mat({x:mat2rowdict(A)[x]*B for x in A.D[0]})
 
 ## Problem 18
-solving_systems_x1 = ...
-solving_systems_x2 = ...
-solving_systems_y1 = ...
-solving_systems_y2 = ...
-solving_systems_m = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_a = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_a_times_m = Mat(({0, 1}, {0, 1}), {...})
-solving_systems_m_times_a = Mat(({0, 1}, {0, 1}), {...})
+solving_systems_x1 = -.2
+solving_systems_x2 = .4
+solving_systems_y1 = .8
+solving_systems_y2 = -.6
+solving_systems_m = Mat(({0, 1}, {0, 1}), {(0,0):-.2, (0,1):.8, (1,0):.4, (1,1):-.6})
+solving_systems_a = Mat(({0, 1}, {0, 1}), {(0,0):3,(0,1):4,(1,0):2,(1,1):1})
+solving_systems_a_times_m = Mat(({0, 1}, {0, 1}), {(0,0):1, (0,1):0, (1,0):0, (1,1):1})
+solving_systems_m_times_a = Mat(({0, 1}, {0, 1}), {(0,0):1, (0,1):0, (1,0):0, (1,1):1})
 
 
 
 ## Problem 19
 # Please write your solutions as booleans (True or False)
 
-are_inverses1 = ...
-are_inverses2 = ...
-are_inverses3 = ...
-are_inverses4 = ...
+are_inverses1 = True
+are_inverses2 = True
+are_inverses3 = False
+are_inverses4 = False
 
