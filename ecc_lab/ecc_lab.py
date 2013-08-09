@@ -3,7 +3,7 @@ from vec import Vec
 from mat import Mat
 from matutil import *
 from vecutil import *
-from bitutil import noise
+from bitutil import *
 from GF2 import one
 
 ## Task 1 part 1
@@ -68,7 +68,7 @@ R = Mat(({0, 1, 2, 3}, {0, 1, 2, 3, 4, 5, 6}), {(1, 2): 0, (3, 2): one, (0, 0): 
 
 ## Task 3
 # Create an instance of Mat representing the check matrix H.
-H = None
+H = Mat(({0, 1, 2}, {0, 1, 2, 3, 4, 5, 6}), {(0, 1): 0, (1, 2): one, (2, 4): one, (0, 0): 0, (2, 6): one, (1, 5): one, (2, 2): one, (1, 1): one, (1, 4): 0, (0, 2): 0, (0, 6): one, (1, 3): 0, (0, 5): one, (2, 1): 0, (2, 5): 0, (0, 4): one, (2, 3): 0, (1, 6): one, (1, 0): 0, (2, 0): one, (0, 3): one})
 
 ## Task 4 part 1
 def find_error(e):
@@ -83,15 +83,26 @@ def find_error(e):
         >>> find_error(Vec({0,1,2}, {1:one, 2:one}))
         Vec({0, 1, 2, 3, 4, 5, 6},{2: one})    
     """
-    pass
+    d = sum([0 if e[i] == 0 else 2**(2-i) for i in {0,1,2}])
+    e = Vec({0,1,2,3,4,5,6},{})
+    if d > 0:
+	    e[d-1] = one
+    return e
+
+#res = find_error(Vec({0,1,2}, {0:one}))
+#res2 = find_error(Vec({0,1,2}, {2:one}))
+#res2 = find_error(Vec({0,1,2}, {0:one, 1:one}))
+#res3 = find_error(Vec({0,1,2}, {1:one, 2:one}))
+#print(res)
+#print(res2)
+#print(res3)
 
 ## Task 4 part 2
 # Use the Vec class for your answers.
 non_codeword = Vec({0,1,2,3,4,5,6}, {0: one, 1:0, 2:one, 3:one, 4:0, 5:one, 6:one})
-error_vector = Vec(..., ...)
-code_word = Vec(..., ...)
-original = ... # R * code_word
-
+error_vector = Vec({0, 1, 2, 3, 4, 5, 6},{0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: one})
+code_word = Vec({0, 1, 2, 3, 4, 5, 6},{0: one, 1: 0, 2: one, 3: one, 4: 0, 5: one, 6: 0})
+original = Vec({0, 1, 2, 3},{0: 0, 1: one, 2: 0, 3: one})
 
 ## Task 5
 def find_error_matrix(S):
@@ -103,7 +114,13 @@ def find_error_matrix(S):
         >>> find_error_matrix(S)
         Mat(({0, 1, 2, 3, 4, 5, 6}, {0, 1, 2, 3}), {(1, 2): 0, (3, 2): one, (0, 0): 0, (4, 3): one, (3, 0): 0, (6, 0): 0, (2, 1): 0, (6, 2): 0, (2, 3): 0, (5, 1): one, (4, 2): 0, (1, 0): 0, (0, 3): 0, (4, 0): 0, (0, 1): 0, (3, 3): 0, (4, 1): 0, (6, 1): 0, (3, 1): 0, (1, 1): 0, (6, 3): 0, (2, 0): 0, (5, 0): 0, (2, 2): 0, (1, 3): 0, (5, 3): 0, (5, 2): 0, (0, 2): 0})
     """
-    pass
+    s = mat2coldict(S)
+    return coldict2mat({x:find_error(col) for x,col in s.items()})
+
+s = ''.join([chr(i) for i in range(256)])
+#print(s)
+#print(str2bits(s))
+#print(bits2str(str2bits(s)))
 
 ## Task 6
 s = "I'm trying to free your mind, Neo. But I can only show you the door. You’re the one that has to walk through it."
