@@ -6,6 +6,7 @@ from math import sqrt, pi
 from matutil import coldict2mat
 from solver import solve
 from vec import Vec
+from vecutil import *
 
 
 
@@ -23,21 +24,19 @@ rep_3 = [0,1,-1]
 # For each part, please provide your solution as a list of the coefficients for
 # the generators of V.
 
-lin_comb_coefficients_1 = [...]
-lin_comb_coefficients_2 = [...]
-lin_comb_coefficients_3 = [...]
-lin_comb_coefficients_4 = [...]
-
-
+lin_comb_coefficients_1 = [3,-1,1]
+lin_comb_coefficients_2 = [.5,-1.5,1]
+lin_comb_coefficients_3 = [.5,-5.5,4]
+lin_comb_coefficients_4 = [1,-2,1]
 
 ## Problem 3
 # Use one from the GF2 module, not the integer 1.
 # For each part, please provide your solution as a list of the coefficients for
 # the generators of V.
 
-gf2_rep_1 = [...]
-gf2_rep_2 = [...]
-gf2_rep_3 = [...]
+gf2_rep_1 = [one,0,one,0]
+gf2_rep_2 = [one,0,0,one]
+gf2_rep_3 = [one,one,0,one]
 
 
 
@@ -46,80 +45,159 @@ gf2_rep_3 = [...]
 # For each part, please provide your solution as a list of the coefficients for
 # the generators of V.
 
-gf2_lc_rep_1 = [...]
-gf2_lc_rep_2 = [...]
-gf2_lc_rep_3 = [...]
-gf2_lc_rep_4 = [...]
+
+"""
+a = list2vec([one,one,0,0,0,0,0,0])
+b = list2vec([0,one,one,0,0,0,0,0])
+c = list2vec([one,0,0,one,0,0,0,0])
+d = list2vec([0,one,0,0,one,0,0,0])
+e = list2vec([0,0,one,0,one,0,0,0])
+f = list2vec([0,0,0,one,one,0,0,0])
+g = list2vec([0,0,0,0,0,one,0,one])
+h = list2vec([0,0,0,0,0,0,one,one])
 
 
+a = list2vec([one,0,one,0,0,0,0,0])
+b = list2vec([one,one,0,one,0,0,0,0])
+c = list2vec([0,one,0,0,one,0,0,0])
+d = list2vec([0,0,one,0,0,one,0,0])
+e = list2vec([0,0,0,one,one,one,0,0])
+f = list2vec([0,0,0,0,0,0,one,0])
+g = list2vec([0,0,0,0,0,0,0,one])
+h = list2vec([0,0,0,0,0,0,one,one])
+
+for a2 in [0,one]:
+	for b2 in [0,one]:
+		for c2 in [0,one]:
+			for d2 in [0,one]:
+				for e2 in [0,one]:
+					for f2 in [0,one]:
+						for g2 in [0,one]:
+							for h2 in [0,one]:
+								res = a2*a+b2*b+c2*c+d2*d+e2*e+f2*f+g2*g+h2*h
+								if res == list2vec([0,one,0,one,0,0,0,0]):
+									print([a2,b2,c2,d2,e2,f2,g2,h2])
+"""
+
+gf2_lc_rep_1 = [0,0,0,0,one,one,0,0]
+gf2_lc_rep_2 = [0,0,0,0,0,0,one,one]
+gf2_lc_rep_3 = [0,0,one,0,0,one,0,0]
+gf2_lc_rep_4 = [0,0,0,one,0,one,0,0]
 
 ## Problem 5
 # For each part, please provide your solution as a list of the coefficients for
 # the generators of V.
 
-lin_dep_R_1 = [...]
-lin_dep_R_2 = [...]
-lin_dep_R_3 = [...]
-
-
+lin_dep_R_1 = [2,-1,-1]
+lin_dep_R_2 = [4,-1,4/7]
+lin_dep_R_3 = [-.3,0,0,1,3]
 
 ## Problem 6
 # Please record your solution as a list of coefficients
 
-linear_dep_R_1 = [...]
-linear_dep_R_2 = [...]
-linear_dep_R_3 = [...]
+"""
+print(-.5*sqrt(2) * list2vec([-sqrt(2),sqrt(2),-sqrt(2),sqrt(2)]))
+print(1/pi * list2vec([pi,pi,pi,pi]))
 
+1,1,1,1
+0,-2,0,-2
 
+1,-1,1,-1
+
+print(2*list2vec([0,-1,0,-1]))
+print(1/pi * list2vec([pi,pi,pi,pi]))
+print(.5*sqrt(2) * list2vec([-sqrt(2),sqrt(2),-sqrt(2),sqrt(2)]))
+
+a = list2vec([1,-1,0,0,0])
+b = list2vec([0,1,-1,0,0])
+c = list2vec([0,0,1,-1,0])
+d = list2vec([0,0,0,1,-1])
+e = list2vec([-1,0,0,0,1])
+
+a2 = 1
+b2 = 1
+c2 = 1
+d2 = 1
+e2 = 1
+
+res = a2*a + b2*b + c2*c + d2*d + e2*e
+
+print(a2*a)
+print(b2*b)
+print(c2*c)
+print(d2*d)
+print(e2*e)
+print(res)
+"""
+
+linear_dep_R_1 = [-1,1,-3]
+linear_dep_R_2 = [2,1/pi,.5*sqrt(2)]
+linear_dep_R_3 = [1,1,1,1,1]
 
 ## Problem 7
 # Assign the COEFFICIENT of the vector to each variable.
 # Assign sum_to to the vector that you are expressing as a linear combination
 # of the other two.  Write the name of the vector as a STRING.  i.e. 'u' or 'w'
 
-u = ...
-v = ...
-w = ...
-sum_to = ...
-
-
+u = 1
+v = 1
+w = 1
+sum_to = 'v'
 
 ## Problem 8
 # Please use the Vec class to represent your vectors
 
-indep_vec_1 = Vec({...}, {...})
-indep_vec_2 = Vec({...}, {...})
-indep_vec_3 = Vec({...}, {...})
-indep_vec_4 = Vec({...}, {...})
-
-
+indep_vec_1 = Vec({0, 1, 2},{0: 1, 1: 2, 2: 3})
+indep_vec_2 = Vec({0, 1, 2},{0: 3, 1: 2, 2: 1})
+indep_vec_3 = Vec({0, 1, 2},{0: 0, 1: 0, 2: 1})
+indep_vec_4 = Vec({0, 1, 2},{0: 1, 1: 0, 2: 0})
 
 ## Problem 9
 # Please give your solution as a list of coefficients of the linear combination
 
-zero_comb_1 = [...]
-zero_comb_2 = [...]
-zero_comb_3 = [...]
+"""
+a = list2vec([one,one,0,one,one])
+b = list2vec([0,0,one,0,0])
+c = list2vec([0,0,one,one,one])
+d = list2vec([one,0,one,one,one])
+e = list2vec([one,one,one,one,one])
 
+a2 = one
+b2 = one
+c2 = 0
+d2 = 0
+e2 = one
 
+res = a2*a + b2*b + c2*c + d2*d + e2*e
+
+print(a2*a)
+print(b2*b)
+print(c2*c)
+print(d2*d)
+print(e2*e)
+print(res)
+"""
+
+zero_comb_1 = [one,one,0,one]
+zero_comb_2 = [0,one,one,one]
+zero_comb_3 = [one,one,0,0,one]
 
 ## Problem 10
 # Please give your solution as a list of coefficients of the vectors
 # in the set in order (list the coefficient for v_i before v_j if i < j).
 
-sum_to_zero_1 = [...]
-sum_to_zero_2 = [...]
-sum_to_zero_3 = [...]
-sum_to_zero_4 = [...]
-
+sum_to_zero_1 = [0,one,0,one,one]
+sum_to_zero_2 = [0,one,0,one,one,0,0]
+sum_to_zero_3 = [one,0,one,one,one]
+sum_to_zero_4 = [one,one,one,one,one,0,0]
 
 
 ## Problem 11
 ## Please express your answer a list of ints, such as [1,0,0,0,0]
 
-exchange_1 = [...]
-exchange_2 = [...]
-exchange_3 = [...]
+exchange_1 = [0,0,1,0,0]
+exchange_2 = [0,0,0,1,0]
+exchange_3 = [0,0,0,0,1]
 
 
 ## Problem 12
