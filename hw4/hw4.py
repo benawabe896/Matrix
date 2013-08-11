@@ -3,7 +3,7 @@
 
 from GF2 import one
 from math import sqrt, pi
-from matutil import coldict2mat
+from matutil import *
 from solver import solve
 from vec import Vec
 from vecutil import *
@@ -203,11 +203,9 @@ exchange_3 = [0,0,0,0,1]
 ## Problem 12
 # Please give the name of the vector you want to replace as a string (e.g. 'v1')
 
-replace_1 = ...
-replace_2 = ...
-replace_3 = ...
-
-
+replace_1 = 'v3'
+replace_2 = 'v1'
+replace_3 = 'v1'
 
 ## Problem 13
 def rep2vec(u, veclist):
@@ -224,7 +222,7 @@ def rep2vec(u, veclist):
         >>> rep2vec(Vec({0,1,2}, {0:2, 1:4, 2:6}), [a0,a1,a2]) == Vec({'a', 'c', 'b', 'd'},{'a': 2, 'c': 6, 'b': 4, 'd': 0})
         True
     '''
-    pass
+    return u*rowdict2mat(veclist)
 
 
 
@@ -244,9 +242,8 @@ def vec2rep(veclist, v):
         >>> vec2rep([a0,a1,a2], Vec({'a','b','c','d'}, {'a':3, 'c':-2})) == Vec({0, 1, 2},{0: 3.0, 1: 0.0, 2: -2.0})
         True
     '''
-    pass
-
-
+    #return v * coldict2mat(veclist)
+    return solve(coldict2mat(veclist),v)
 
 ## Problem 15
 def is_superfluous(L, i):
