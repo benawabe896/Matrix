@@ -31,7 +31,6 @@ def translation(x,y):
     #return i + m
     return Mat((labels, labels), { ('x', 'x'): 1, ('x', 'u'): x, ('y','y'): 1, ('y', 'u'): y, ('u', 'u'): 1 })
 
-print(translation(10,20))
 ## Task 3
 def scale(a, b):
     '''
@@ -39,7 +38,7 @@ def scale(a, b):
     Output:  Corresponding 3x3 scaling matrix.
     '''
     labels = {'x','y','u'}
-    return Mat((labels, labels), { ('x', 'x'): 1, ('x', 'u'): x, ('y','y'): 1, ('y', 'u'): y, ('u', 'u'): 1 })
+    return Mat((labels, labels), { ('x', 'x'): a, ('y','y'): b, ('u', 'u'): 1 })
 
 ## Task 4
 def rotation(angle):
@@ -48,7 +47,10 @@ def rotation(angle):
     Output:  Corresponding 3x3 rotation matrix.
     Note that the math module is imported.
     '''
-    pass
+    labels = {'x','y','u'}
+    #return Mat((labels, labels), { ('x','x'): 1, ('y','y'): math.cos(angle), ('y','u'):-math.sin(angle),('u','y'): math.sin(angle), ('u', 'u'): math.cos(angle) })
+    #return Mat((labels, labels), { ('x','x'): math.cos(angle), ('x','u'):math.sin(angle), ('y','y'): 1, ('u','x'): -math.sin(angle), ('u', 'u'): math.cos(angle) })
+    return Mat((labels, labels), { ('x','x'): math.cos(angle), ('x','y'):-math.sin(angle), ('y','x'): math.sin(angle), ('y','y'): math.cos(angle), ('u', 'u'): 1 })
 
 ## Task 5
 def rotate_about(x,y,angle):
@@ -58,7 +60,12 @@ def rotate_about(x,y,angle):
     Output:  Corresponding 3x3 rotation matrix.
     It might be helpful to use procedures you already wrote.
     '''
-    pass
+    return translation(x,y) * rotation(angle) * translation(-x,-y)
+
+t = translation(10,10)
+r = rotation(20)
+print(t*r)
+print(t+r)
 
 ## Task 6
 def reflect_y():
