@@ -270,8 +270,14 @@ def is_superfluous(L, i):
         >>> is_superfluous([a0,a1,a2,a3], 1)
         False
     '''
-    pass
+    newL = L[:]
+    v = newL.pop(i)
+    m = coldict2mat(newL)
+    res = solve(m,v)
 
+    residual = v - m*res
+
+    return True if residual * residual < 10**-14 and len(L) > 1 else False
 
 
 ## Problem 16
@@ -297,9 +303,10 @@ def is_independent(L):
     >>> is_independent(vlist[5:])
     True
     '''
-    pass
-
-
+    for i in range(len(L)-1):
+	    if is_superfluous(L,i):
+		    return False
+    return True
 
 ## Problem 17
 def superset_basis(S, L):
@@ -319,9 +326,12 @@ def superset_basis(S, L):
         >>> superset_basis([a0, a3], [a0, a1, a2]) == [Vec({'a', 'c', 'b', 'd'},{'a': 1}), Vec({'a', 'c', 'b', 'd'},{'b':1}),Vec({'a', 'c', 'b', 'd'},{'c': 1})]
         True
     '''
-    pass
-
-
+    T = list(S)
+    for l in L:
+	    T.append(l)
+	    if is_independent(T) == False:
+		    T.pop()
+    return T
 
 ## Problem 18
 def exchange(S, A, z):
@@ -337,6 +347,23 @@ def exchange(S, A, z):
         >>> z = list2vec([0,2,1,1])
         >>> exchange(S, A, z) == Vec({0, 1, 2, 3},{0: 0, 1: 0, 2: 1, 3: 0})
         True
+
+    notinA = []
+    for s in S:
+	    if s not in A:
+		    notinA.append(s)
+    for w in notinA:
+	    newS = []
+	    for s in S:
+		    if s != w:
+			    newS.append(s)
+	    newS.append(z)
+	    if is_independent(newS):
+		    return w
     '''
-    pass
+    L = S[:]
+    L.append(z)
+    for i in range(len(L)):
+	    if is_superfluous(L,i) and L[i] not in A:
+		    return L[i]
 
