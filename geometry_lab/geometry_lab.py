@@ -62,18 +62,13 @@ def rotate_about(x,y,angle):
     '''
     return translation(x,y) * rotation(angle) * translation(-x,-y)
 
-t = translation(10,10)
-r = rotation(20)
-print(t*r)
-print(t+r)
-
 ## Task 6
 def reflect_y():
     '''
     Input:  None.
     Output:  3x3 Y-reflection matrix.
     '''
-    pass
+    return Mat((labels, labels), { ('x','x'): 1, ('y','y'): -1, ('u', 'u'): 1 })
 
 ## Task 7
 def reflect_x():
