@@ -1,5 +1,10 @@
-from mat import Mat
+from mat import *
+from vec import *
+from image_mat_util import *
 import math
+from matutil import *
+
+position, color = file2mat("cit.png")
 
 ## Task 1
 def identity(labels = {'x','y','u'}):
@@ -12,7 +17,7 @@ def identity(labels = {'x','y','u'}):
     identity().  Additionally, if you want {'r','g','b'}, or another set, to be the
     labels of your matrix, you can call identity({'r','g','b'}).  
     '''
-    pass
+    return Mat((labels, labels), {(x,y):1 for x in labels for y in labels if x == y})
 
 ## Task 2
 def translation(x,y):
@@ -20,15 +25,21 @@ def translation(x,y):
     Input:  An x and y value by which to translate an image.
     Output:  Corresponding 3x3 translation matrix.
     '''
-    pass
+    labels = {'x','y','u'}
+    i = identity()
+    m = Mat(i.D, {('x', 'u'):x, ('y', 'u'):y})
+    #return i + m
+    return Mat((labels, labels), { ('x', 'x'): 1, ('x', 'u'): x, ('y','y'): 1, ('y', 'u'): y, ('u', 'u'): 1 })
 
+print(translation(10,20))
 ## Task 3
 def scale(a, b):
     '''
     Input:  Scaling parameters for the x and y direction.
     Output:  Corresponding 3x3 scaling matrix.
     '''
-    pass
+    labels = {'x','y','u'}
+    return Mat((labels, labels), { ('x', 'x'): 1, ('x', 'u'): x, ('y','y'): 1, ('y', 'u'): y, ('u', 'u'): 1 })
 
 ## Task 4
 def rotation(angle):
